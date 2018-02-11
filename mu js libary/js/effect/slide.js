@@ -1,27 +1,28 @@
-var slide = (el) => {
+let slide = (el) => {
     this.setup = function (delay, event) {
         window.clearInterval();
-        var hg = el.offsetHeight;
+        let hg = el.offsetHeight;
         return el.style.cssText =
             "display:block;overflow:hidden; transition: transform 0.4s cubic-bezier(0, 1, 0.5, 1);";
     };
     this.effect = true;
-    this.up = function (delay) {
+    this.up = (delay) => {
         if (!delay) {
             delay = 200;
         }
         this.setup(delay);
-        var padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
-        var padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
-        var pad = padT + padB;
-        var hg = el.offsetHeight - pad;
-        var s = el.style;
+        let computed = window.getComputedStyle(el),
+            padT = Number(computed.paddingBottom.replace("px", "")),
+            padB = Number(computed.paddingTop.replace("px", "")),
+            pad = padT + padB,
+            hg = el.offsetHeight - pad,
+            s = el.style;
         el.setAttribute("data-slide", "up");
-        var effect = setInterval(function () {
-            hg -= parseFloat(hg / delay) * 3;
+        let effect = setInterval (() => {
+            hg -= parseFloat (hg / delay) * 3;
             s.height = hg + "px";
-            if (hg < 100) {
-                hg -= (hg / delay) * 8;
+            if (hg < 50) {
+                hg -= parseFloat (hg / delay) * 5;
             }
             if (hg <= pad) {
                 s.paddingTop = 0;
@@ -30,38 +31,39 @@ var slide = (el) => {
             }
             if (hg < 2) {
                 s.height = 0;
-                window.clearInterval(effect);
-                setTimeout(function () {
+                window.clearInterval (effect);
+                setTimeout (() => {
                     s.borderWidth = "0";
-                    setTimeout(function () {
-                        s.cssText = "";
+                    setTimeout (() => {
+                        s.cssText = "overflow:hidden";
                         s.display = "none";
-                    }, 1)
-                }, 1)
+                    }, delay)
+                }, delay)
             }
-        }, "fast");
+        }, 1);
         return this.down;
     };
-    this.down = function (delay) {
+    this.down = (delay) => {
         if (!delay) {
             delay = 200;
         }
         this.effect = false;
         this.setup(delay);
-        var padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
-        var padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
-        var hg = Number(window.getComputedStyle(el).height.replace("px", "")),
-            h = 0;
-        var pad = padT + padB;
-        var s = el.style;
+        let computed = window.getComputedStyle(el),
+            padT = Number(computed.paddingBottom.replace("px", "")),
+            padB = Number(computed.paddingTop.replace("px", "")),
+            hg = Number(computed.height.replace("px", "")),
+            h = 0,
+            pad = padT + padB,
+            s = el.style;
         s.height = 0;
         s.paddingTop = 0;
         s.paddingBottom = 0;
         s.color = "transparent";
         el.setAttribute("data-slide", "down");
 
-        var effect = setInterval(function () {
-            h += parseFloat(hg / delay) * 3;
+        let effect = setInterval (() => {
+            h += parseFloat (hg / delay) * 2;
             s.height = h + "px";
             if (h > pad) {
                 s.color = "";
@@ -69,24 +71,23 @@ var slide = (el) => {
                 s.paddingBottom = "";
             }
             if (h >= hg) {
-                window.clearInterval(effect);
-                setTimeout(function () {
-                    s.cssText = "";
+                window.clearInterval (effect);
+                setTimeout (() => {
+                    s.cssText = "overflow:hidden";
                     s.display = "block";
-                }, 1)
+                }, delay)
             }
-        }, "fast")
+        }, 0);
         return this.up;
 
     };
-    this.toggle = function (delay) {
-        this.setup(delay);
-        if (el.getAttribute("data-slide") == "up" || el.hasAttribute("data-slide") == false || el.offsetHeight < 1) {
+    this.toggle = (delay) => {
+        if (el.getAttribute("data-slide") === "up" || el.hasAttribute("data-slide") === false || el.offsetHeight < 1) {
             this.down(delay);
-        } else if (el.getAttribute("data-slide") == "down") {
+        } else if (el.getAttribute("data-slide") === "down") {
             this.up(delay);
         }
-        return this;
+      return this;
     };
     return this;
 };

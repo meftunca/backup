@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Api creator</title>
+  <link rel="stylesheet" href="../css/modal.css">
+
+</head>
+
+<body class="container p-100">
+  <button class="btn btn-xl btn-rose modal-toggle" data-toggle="example">sm modal</button>
+  <button class="btn btn-xl btn-rose modal-toggle" data-toggle="deneme2">normal modal</button>
+  <button class="btn btn-xl btn-rose modal-toggle" data-toggle="full-page">fullpage modal</button>
+
+
+
+  <div class="modal" data-type="example">
+    <div class="modal-content small">
+      <aside class="close"><a href="#!" class="closed"><i class="fa fa-close"></i></a></aside>
+      <div class="modal-header right">
+        <h4 class="text-blue-5 right">
+                  modal header
+              </h4>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolor modi natus nostrum odit quae reiciendis, tempore vitae. Adipisci asperiores assumenda dignissimos enim eum itaque praesentium quia sequi. Aliquid, dolor?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="text-teal-1 close">close</a>
+      </div>
+    </div>
+  </div>
+  <div class="modal" data-type="full-page">
+    <div class="modal-content full-page">
+      <aside class="close"><a href="#!" class="closed"><i class="fa fa-close"></i></a></aside>
+      <div class="modal-header right">
+        <h4 class="text-blue-5 right">
+                  modal header
+              </h4>
+      </div>
+      <div class="modal-body scrolspy" style='min-height: 1000px;'>
+        .....
+      </div>
+      <div class="modal-footer">
+        <a href="" class="text-teal-1 close">close</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" data-type="deneme2">
+    <div class="modal-content">
+      <aside class="close"><a href="#!" class="closed"><i class="fa fa-close"></i></a></aside>
+      <div class="modal-header right">
+        <h4 class="text-blue-5 right">
+                  modal header2
+              </h4>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolor modi natus nostrum odit quae reiciendis, tempore vitae. Adipisci asperiores assumenda dignissimos enim eum itaque praesentium quia sequi. Aliquid, dolor?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-md btn-rose">close</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/popup/modal.js"></script>
+  <script>
+    modal();
+  </script>
+</body>
+
+</html>

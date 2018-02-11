@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Api creator</title>
+    <link rel="stylesheet" href="../css/comeback.css">
+    <link rel="stylesheet" href="../css/collapsible.css">
+</head>
+
+<body class="container p-100">
+<ul class="collapse-group popout">
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 1</a>
+        <div class="collapse-content">1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aliquam debitis
+            dignissimos expedita id incidunt, mollitia non nulla omnis optio placeat, quisquam ratione recusandae
+            similique sint sit suscipit totam!
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 2</a>
+        <div class="collapse-content">2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda dicta
+            dolores eaque error laborum, odio odit quas sapiente sequi tempore voluptate voluptatibus? Alias explicabo
+            fugit ipsam quas voluptates? Sapiente.
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 3</a>
+        <div class="collapse-content">3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores debitis
+            dolore est facilis fuga inventore, pariatur quasi sapiente sunt vel veniam voluptas voluptate! Aut eum
+            minima quis rerum veniam?
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 4</a>
+        <div class="collapse-content">4Lorem lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+            asperiores, at dolor in minus mollitia obcaecati placeat provident quisquam reiciendis tempora tempore
+            tenetur, velit. Amet iure nisi nulla! Debitis, natus.
+        </div>
+    </li>
+</ul>
+<ul class="collapse-group">
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 1</a>
+        <div class="collapse-content">1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aliquam debitis
+            dignissimos expedita id incidunt, mollitia non nulla omnis optio placeat, quisquam ratione recusandae
+            similique sint sit suscipit totam!
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 2</a>
+        <div class="collapse-content">2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda dicta
+            dolores eaque error laborum, odio odit quas sapiente sequi tempore voluptate voluptatibus? Alias explicabo
+            fugit ipsam quas voluptates? Sapiente.
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 3</a>
+        <div class="collapse-content">3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores debitis
+            dolore est facilis fuga inventore, pariatur quasi sapiente sunt vel veniam voluptas voluptate! Aut eum
+            minima quis rerum veniam?
+        </div>
+    </li>
+    <li class="collapse-item"><a href="#!" class="collapse-toggle">collapse toggle 4</a>
+        <div class="collapse-content">4Lorem lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+            asperiores, at dolor in minus mollitia obcaecati placeat provident quisquam reiciendis tempora tempore
+            tenetur, velit. Amet iure nisi nulla! Debitis, natus.
+        </div>
+    </li>
+</ul>
+<section class="container">
+    <a href="#!" data-collapse="default" data-href="d1" class="collapse-toggle btn btn-md btn-primary">collapse</a>
+    <a href="#!" data-collapse="default" data-href="d2" class="collapse-toggle btn btn-md btn-primary">collapse</a>
+    <a href="#!" data-collapse="default" data-href="d3" class="collapse-toggle btn btn-md btn-primary">collapse</a>
+
+    <div class="collapse-content" data-id="d1">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eum iure nisi? A, adipisci aliquid animi,
+            aspernatur atque cumque earum esse eum ex fugit, id in odit pariatur repellendus totam!</p>
+    </div>
+    <div class=" collapse-content" data-id="d2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eum iure nisi? A, adipisci aliquid animi,
+            aspernatur atque cumque earum esse eum ex fugit, id in odit pariatur repellendus totam!</p>
+    </div>
+    <div class=" collapse-content" data-id="d3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eum iure nisi? A, adipisci aliquid animi,
+            aspernatur atque cumque earum esse eum ex fugit, id in odit pariatur repellendus totam!</p>
+    </div>
+</section>
+<script src="../js/effect/slide.js"></script>
+<script src="../js/collapsible/collapsible.js"></script>
+<script>
+    collapsible();
+    collapsible ("",
+        {
+            accordion: true || false,
+            expandable: true || false,
+            activeClass: "collapse-content-light", //content için aktif class atayabilirsiniz
+            delay : 500
+        }
+        );
+</script>
+</body>
+
+</html>

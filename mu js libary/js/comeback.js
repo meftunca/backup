@@ -1,10 +1,10 @@
 {
-    var view = function (el) {
+    let view = function (el) {
         this.hide = function (delay) {
             if (!delay) {
                 el.style.display = "none";
             } else {
-                var effect = setTimeout(function () {
+                let effect = setTimeout(function () {
                     el.style.display = "none";
                 }, delay);
                 clearTimeout(effect)
@@ -15,7 +15,7 @@
             if (!delay) {
                 el.style.display = "block";
             } else {
-                var effect = setTimeout(function () {
+                let effect = setTimeout(function () {
                     el.style.display = "block";
                 }, delay)
                 clearTimeout(effect)
@@ -32,19 +32,19 @@
         };
         return this;
     };
-    var fade = function (el) {
+    let fade = function (el) {
         this.out = function (delay) {
             if (!delay) {
                 delay = 400;
             }
-            var h;
+            let h;
             if (!window.getComputedStyle(el).opacity) {
                 h = 1;
             } else {
                 h = window.getComputedStyle(el).opacity;
             }
 
-            var effect = setInterval(function () {
+            let effect = setInterval(function () {
                 if (h < 0.1) {
                     el.style.opacity = 0;
                     window.clearInterval(effect);
@@ -60,9 +60,9 @@
             if (!delay) {
                 delay = 400;
             }
-            var h = 0;
+            let h = 0;
             el.style.opacity = 0;
-            var effect = setInterval(function () {
+            let effect = setInterval(function () {
                 h += 0.1;
                 if (h > 1) {
                     window.clearInterval(effect)
@@ -82,10 +82,10 @@
         };
         return this;
     };
-    var slide = (el) => {
+    let slide = (el) => {
         this.setup = function (delay, event) {
             window.clearInterval();
-            var hg = el.offsetHeight;
+            let hg = el.offsetHeight;
             return el.style.cssText =
                 "display:block;overflow:hidden; transition: transform 0.4s cubic-bezier(0, 1, 0.5, 1);";
         };
@@ -95,13 +95,13 @@
                 delay = 200;
             }
             this.setup(delay);
-            var padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
-            var padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
-            var pad = padT + padB;
-            var hg = el.offsetHeight - pad;
-            var s = el.style;
+            let padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
+            let padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
+            let pad = padT + padB;
+            let hg = el.offsetHeight - pad;
+            let s = el.style;
             el.setAttribute("data-slide", "up");
-            var effect = setInterval(function () {
+            let effect = setInterval(function () {
                 hg -= parseFloat(hg / delay) * 3;
                 s.height = hg + "px";
                 if (hg < 100) {
@@ -132,19 +132,19 @@
             }
             this.effect = false;
             this.setup(delay);
-            var padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
-            var padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
-            var hg = Number(window.getComputedStyle(el).height.replace("px", "")),
+            let padT = Number(window.getComputedStyle(el).paddingBottom.replace("px", ""));
+            let padB = Number(window.getComputedStyle(el).paddingTop.replace("px", ""));
+            let hg = Number(window.getComputedStyle(el).height.replace("px", "")),
                 h = 0;
-            var pad = padT + padB;
-            var s = el.style;
+            let pad = padT + padB;
+            let s = el.style;
             s.height = 0;
             s.paddingTop = 0;
             s.paddingBottom = 0;
             s.color = "transparent";
             el.setAttribute("data-slide", "down");
 
-            var effect = setInterval(function () {
+            let effect = setInterval(function () {
                 h += parseFloat(hg / delay) * 3;
                 s.height = h + "px";
                 if (h > pad) {
@@ -174,22 +174,22 @@
         };
         return this;
     };
-    var rangeSlider = (function () {
-        var range = document.querySelectorAll(".range-group input[type=range]");
+    let rangeSlider = (function () {
+        let range = document.querySelectorAll(".range-group input[type=range]");
         Array.prototype.forEach.call(range, function (el, i) {
-            var overlay_cr = document.createElement("aside"),
+            let overlay_cr = document.createElement("aside"),
                 ovs = overlay_cr.style;
             overlay_cr.classList.add("range-overlay");
             el.parentNode.appendChild(overlay_cr);
-            var change_range = function () {
-                var el_v = el.value,
+            let change_range = function () {
+                let el_v = el.value,
                     value_item = el.parentNode.querySelector(".range-value");
                 function rangeOffset() {
-                    var width = el.offsetWidth - 15;
-                    var max = parseFloat(el.max);
-                    var min = parseFloat(el.min);
-                    var val = parseFloat(el.value);
-                    var percent = (parseFloat(el.value) - min) / (max - min);
+                    let width = el.offsetWidth - 15;
+                    let max = parseFloat(el.max);
+                    let min = parseFloat(el.min);
+                    let val = parseFloat(el.value);
+                    let percent = (parseFloat(el.value) - min) / (max - min);
                     return (percent * width);
                 }
                 ovs.width = rangeOffset() + "px";
@@ -215,14 +215,14 @@
     })();
 
 
-    var dropdown = document.querySelectorAll(".dropdown .dropdown-toggle");
+    let dropdown = document.querySelectorAll(".dropdown .dropdown-toggle");
     Array.prototype.forEach.call(
         dropdown,
         function (el) {
             let menu = el.parentNode.querySelector(".dropdown-menu"),
                 classL = menu.classList,
                 menuHeight = 200,menuWidth = 200;
-    
+
             el.addEventListener("click", function () {
                 let bodyRect = document.body.getBoundingClientRect(),
                     elRect = this.getBoundingClientRect(),
@@ -237,7 +237,7 @@
                             { classL.add("dropup");}
                             menu.style.cssText ="position:absolute;transform:translateY(-"+(0)+"px);";
                         }
-    
+
                     },
                     leftQuery = () => {
                         let leftQuery = elRect.left - menuWidth;
@@ -253,7 +253,7 @@
                             menu.style.cssText ="position:absolute;transform:translatex(-"+(0)+"px);";
                         }
                     };
-    
+
                 function toggles() {
                     if (classL.contains("show")) {
                         classL.add("out");
@@ -268,7 +268,7 @@
                         console.log("menu yüksekliği : " + menuHeight,"menu genişliği : " + menuWidth);
                     }
                 }
-    
+
                 function defaults() {
                     toggles();
                     topQuery();
@@ -283,7 +283,7 @@
                         }
                     })
                     document.addEventListener("click", function (event) {
-                        var isClickInside = el.contains(event.target) || menu.contains(event.target);
+                        let isClickInside = el.contains(event.target) || menu.contains(event.target);
                         if (!isClickInside) {
                             if (classL.contains("show")) {
                                 classL.add("out");
@@ -295,7 +295,7 @@
                         }
                     }, false);
                 }
-    
+
                 if (el.getAttribute("data-collapse") === "dropdown") {
                     if (window.innerWidth <= 769) {
                         slide(menu).toggle(100);
@@ -307,26 +307,26 @@
                             menu.removeAttribute("style");
                             defaults();
                         }
-    
+
                     });
                 } else {
                     defaults()
                 }
-    
-    
+
+
             }, false);
         }
     );
-    var collapse = document.querySelectorAll(".collapse-toggle[data-collapse]");
+    let collapse = document.querySelectorAll(".collapse-toggle[data-collapse]");
     Array.prototype.forEach.call(collapse, function (el, i) {
-        var item_id = el.getAttribute("data-href");
-        var menu = document.querySelector("[data-id='" + item_id + "']");
+        let item_id = el.getAttribute("data-href");
+        let menu = document.querySelector("[data-id='" + item_id + "']");
         el.onclick = function () {
             slide(menu).toggle()
         }
     });
 
-    var accordion = document.querySelectorAll(".accordion-menu a.toggle");
+    let accordion = document.querySelectorAll(".accordion-menu a.toggle");
     Array.prototype.forEach.call(accordion, function (el, i) {
         el.onclick = function () {
             let parent = el.parentNode.parentNode;
@@ -337,23 +337,23 @@
 
                 setTimeout(() => {
                     el.classList.toggle("show");
-                    var menu = el.parentNode.querySelector(".accordion");
+                    let menu = el.parentNode.querySelector(".accordion");
                     menu.classList.toggle("show");
                     slide(menu).toggle(150);
                 }, 50);
             } else {
                 el.classList.toggle("show");
-                var menu = el.parentNode.querySelector(".accordion");
+                let menu = el.parentNode.querySelector(".accordion");
                 menu.classList.toggle("show");
                 slide(menu).toggle(150);
             }
         }
     });
 
-    var navbarCollapse = document.querySelectorAll(".collapse-toggle[data-collapse=navbar]");
+    let navbarCollapse = document.querySelectorAll(".collapse-toggle[data-collapse=navbar]");
     Array.prototype.forEach.call(navbarCollapse, function (el) {
-        var id = el.getAttribute("data-href");
-        var menu = el.closest(".navbar").querySelector(".navbar-collapse[data-id=" + id + "]");
+        let id = el.getAttribute("data-href");
+        let menu = el.closest(".navbar").querySelector(".navbar-collapse[data-id=" + id + "]");
         el.onclick = function () {
             if (menu.classList.contains("show")) {
                 menu.classList.remove("show");
@@ -363,22 +363,21 @@
                 slide(menu).down(300);
             }
         }
-
     });
-    var modal = document.querySelectorAll(".modal-toggle");
+    let modal = document.querySelectorAll(".modal-toggle");
     Array.prototype.forEach.call(modal, function (el) {
-        var toggleName = el.getAttribute("data-toggle");
-        var modal_body = document.body.querySelector(".modal[data-type=" + toggleName + "]");
-        var modal_content = modal_body.querySelector(".modal-content");
+        let toggleName = el.getAttribute("data-toggle");
+        let modal_body = document.body.querySelector(".modal[data-type=" + toggleName + "]");
+        let modal_content = modal_body.querySelector(".modal-content");
         el.onclick = function (event) {
             modal_body.classList.add("show");
             modal_content.classList.add("in");
-            var close = modal_content.querySelectorAll(".close");
+            let close = modal_content.querySelectorAll(".close");
             for (i in close) {
                 close[i].onclick = function (event) {
                     modal_content.classList.add("out");
                     modal_content.classList.remove("in");
-                    var effect = setTimeout(function () {
+                    let effect = setTimeout(function () {
                         modal_body.classList.remove("show");
                         modal_content.classList.remove("out");
                     }, 490)
@@ -386,7 +385,7 @@
             }
         };
         document.addEventListener("click", function (event) {
-            var isClickInside = el.contains(event.target) || modal_content.contains(event.target);
+            let isClickInside = el.contains(event.target) || modal_content.contains(event.target);
             if (!isClickInside) {
                 if (modal_body.classList.contains("show")) {
                     modal_content.classList.add("out");
@@ -399,30 +398,30 @@
             }
         });
         window.addEventListener("change", function () {
-            var clone_mdl = document.body.querySelectorAll(".modal");
+            let clone_mdl = document.body.querySelectorAll(".modal");
             Array.prototype.forEach.call(clone_mdl, function (el) {
-                var cln = el.cloneNode(true);
+                let cln = el.cloneNode(true);
                 el.outerHTML = "";
                 document.body.appendChild(cln);
             });
         });
     });
-    var lightbox = document.querySelectorAll(".lightbox-link");
+    let lightbox = document.querySelectorAll(".lightbox-link");
     Array.prototype.forEach.call(lightbox, function (el) {
-        var url = el.getAttribute("data-href"),
+        let url = el.getAttribute("data-href"),
             type = el.getAttribute("data-type"),
             lightbox = document.querySelector(".lightbox");
         content = document.querySelector(".lightbox-content");
         el.addEventListener("click", function () {
             lightbox.classList.add("show");
-            var item = type === "image" ? "img" : "iframe";
-            var create_item = document.createElement(item);
+            let item = type === "image" ? "img" : "iframe";
+            let create_item = document.createElement(item);
             create_item.src = url;
             create_item.classList.add("lightbox-item");
             document.querySelector(".lightbox-content").innerHTML = "";
             document.querySelector(".lightbox-content").appendChild(create_item);
-            var close = document.querySelector(".lightbox-close");
-            var duration = Number(window.getComputedStyle(close)["transitionDuration"].replace("s", "") * 1000);
+            let close = document.querySelector(".lightbox-close");
+            let duration = Number(window.getComputedStyle(close)["transitionDuration"].replace("s", "") * 1000);
             close.addEventListener("click", function () {
                 lightbox.classList.remove("show");
                 lightbox.classList.add("out");
@@ -434,9 +433,9 @@
         });
 
     });
-    var sidebar = document.querySelectorAll(".sidebar-toggle");
+    let sidebar = document.querySelectorAll(".sidebar-toggle");
     Array.prototype.forEach.call(sidebar, function (el) {
-        var id = el.getAttribute("data-href"),
+        let id = el.getAttribute("data-href"),
          content = document.querySelector(".sidebar[data-id=" + id + "]"),
          autoClose = content.getAttribute("data-auto-close") ;
         el.onclick = function () {
@@ -444,7 +443,7 @@
         }
         if(autoClose !== undefined && autoClose === "true"){
             document.addEventListener("click", function (event) {
-                var isClickInside = el.contains(event.target) || content.contains(event.target);
+                let isClickInside = el.contains(event.target) || content.contains(event.target);
                 if (!isClickInside) {
                     if (content.classList.contains("show")) {
                         content.classList.remove("show");
@@ -452,20 +451,20 @@
                 }
             });
         }
-    
+
     });
-    var selectbox = document.querySelectorAll(".dropdown-toggle[data-toggle=selectbox]");
+    let selectbox = document.querySelectorAll(".dropdown-toggle[data-toggle=selectbox]");
     Array.prototype.forEach.call(selectbox, function (el) {
-        var parent = el.parentNode,
+        let parent = el.parentNode,
             menu = el.parentNode.querySelector(".dropdown-menu[data-type=selectbox]"),
             name = menu.getAttribute("input-name"),
             val = menu.getAttribute("input-value");
-        var input = document.createElement("input");
+        let input = document.createElement("input");
         input.type = "hidden";
         input.name = name;
         input.value = val;
         parent.parentNode.appendChild(input);
-        var select_item = menu.querySelectorAll("[select-value]");
+        let select_item = menu.querySelectorAll("[select-value]");
         for (i in select_item) {
             select_item[i].onclick = function () {
                 val = this.getAttribute("select-value");
@@ -479,45 +478,56 @@
 
     });
 
-    var tabs = document.querySelectorAll(".tab-group");
-    Array.prototype.forEach.call(tabs, function (el) {
-        var content = el.querySelector(".content-group"),
-            tab_item = el.querySelector(".tab");
-        tab_item.firstElementChild.classList.add("active");
-        content.firstElementChild.classList.add("active");
-        let clears = (par) => {
-            Array.prototype.forEach.call(par, function (clear) {
-                clear.classList.remove("active");
-            });
+    let tabContent = document.querySelectorAll(".tab-group");
+    Array.prototype.forEach.call(tabContent, function (targetItem) {
+        let contentGroup = targetItem.querySelector(".content-group"),
+            tabGroup = targetItem.querySelector(".tab"),
+            linkItem = tabGroup.querySelectorAll(".tab-item");
+        /**default Settings */
+        if (!tabGroup.querySelector(".tab-item.active")) {
+            tabGroup.firstElementChild.classList.add("active");
         }
-        var item = el.querySelectorAll(".tab-item");
-        Array.prototype.forEach.call(item, function (els) {
-            els.addEventListener("click", function () {
-                var id = els.getAttribute("data-href");
-                clears(el.querySelectorAll(".active"))
-                els.classList.add("active");
-                content.querySelector(".tab-content[data-id=" + id + "]").classList.add("active");
-            }, false);
+        if (!contentGroup.querySelector(".tab-content.active")) {
+            contentGroup.firstElementChild.classList.add("active");
+        }
+        Array.prototype.forEach.call(linkItem, function (link) {
+            link.addEventListener("click", function (e) {
+                let href = this.getAttribute("data-href"),
+                    tabGroup = this.closest(".tab"),
+                    contentGroups = tabGroup.nextSibling;
+                /** remove active class */
+                if (tabGroup.querySelector(".tab-item.active")) {
+                  let href2 =tabGroup.querySelector(".tab-item.active").getAttribute("data-href");
+                     tabGroup.querySelector(".tab-item.active").classList.remove("active");
+                     this.closest(".tab-group").querySelector(".tab-content[data-id=" + href2 + "]").classList.remove("active");
+                   }
+                /** add active class */
+                this.classList.add("active");
+                contentGroup.querySelector(".tab-content[data-id=" + href + "]").classList.add("active");
+
+            });
         });
 
+
     });
-    var popover = document.querySelectorAll(".popover-toggle");
+
+    let popover = document.querySelectorAll(".popover-toggle");
     Array.prototype.forEach.call(popover, function (el) {
-        var id = el.getAttribute("data-id");
+        let id = el.getAttribute("data-id");
         el.addEventListener("click", function () {
             el.parentNode.querySelector(".popover-content[data-href=" + id + "]").classList.toggle("show");
         }, false);
     });
-    var cardJs = document.querySelectorAll(".card-toggle");
+    let cardJs = document.querySelectorAll(".card-toggle");
     Array.prototype.forEach.call(cardJs, function (el) {
-        var id = el.getAttribute("data-id");
+        let id = el.getAttribute("data-id");
         el.addEventListener("click", function () {
             document.querySelector(".card-toggle-content[data-href=" + id + "]").classList.toggle("show");
         }, false)
     });
-    var carousel = function (el) {
+    let carousel = function (el) {
 
-        var content = el.querySelector(".carousel-content"),
+        let content = el.querySelector(".carousel-content"),
             count = content.childElementCount,
             responsive = JSON.parse(content.getAttribute("data-grid")),
             widths,
@@ -539,19 +549,19 @@
         this.autoplayEffect = null;
 
         index_settings = function () {
-            var slides = content.querySelectorAll(".slide-item");
+            let slides = content.querySelectorAll(".slide-item");
             for (i in slides) {
                 slides[i].tabIndex = i;
             }
         };
         index_settings();
         size = function (widths) {
-            var item_resize = el.querySelectorAll(".slide-item");
+            let item_resize = el.querySelectorAll(".slide-item");
             Array.prototype.forEach.call(item_resize, function (item_size) {
                 item_size.style.width = widths + "px";
             });
         };
-        var responsive_grid = function () {
+        let responsive_grid = function () {
             if (responsive) {
                 if (window.innerWidth >= config.lg) {
                     if (responsive.xl != undefined) {
@@ -597,8 +607,8 @@
 
         autoplay_ = function () {
             if (autoplay === "true") {
-                var i = 0;
-                var last_i = content.lastElementChild.tabIndex;
+                let i = 0;
+                let last_i = content.lastElementChild.tabIndex;
                 this.autoplayEffect = setInterval(function () {
                     if (last_i > i) {
                         content.style.marginLeft = "-" + d_widths * i + "px";
@@ -617,9 +627,9 @@
 
         pagination = function () {
             if (is_pagination) {
-                var pagination_item = el.querySelector(".carousel-pagination");
-                for (var i = 0; i < count; i++) {
-                    var p_item = document.createElement("a");
+                let pagination_item = el.querySelector(".carousel-pagination");
+                for (let i = 0; i < count; i++) {
+                    let p_item = document.createElement("a");
                     p_item.href = "#!";
                     p_item.classList.add("item");
                     p_item.tabIndex = i;
@@ -630,9 +640,9 @@
 
 
         slider_next = function (el) {
-            var content = el.querySelector(".carousel-content");
-            var last_i = content.lastElementChild.tabIndex;
-            var i = content.querySelector(".slide-item.active").tabIndex + 1;
+            let content = el.querySelector(".carousel-content");
+            let last_i = content.lastElementChild.tabIndex;
+            let i = content.querySelector(".slide-item.active").tabIndex + 1;
             step = d_widths / responsive_grid();
             widths = d_widths / step;
             if (step > 1) {
@@ -641,7 +651,7 @@
             if (i <= last_i) {
                 content.children.item(i).classList.add("active");
                 content.children.item(i - 1).classList.remove("active");
-                var ml_ = widths * i;
+                let ml_ = widths * i;
                 content.style.marginLeft = "-" + ml_ + "px";
 
                 i++;
@@ -653,9 +663,9 @@
             }
         };
         slider_prev = function () {
-            var content = el.querySelector(".carousel-content");
-            var last_i = content.lastElementChild.tabIndex;
-            var i = content.querySelector(".slide-item.active").tabIndex;
+            let content = el.querySelector(".carousel-content");
+            let last_i = content.lastElementChild.tabIndex;
+            let i = content.querySelector(".slide-item.active").tabIndex;
             step = d_widths / responsive_grid();
             widths = d_widths / step;
             if (i >= 1) {
@@ -663,7 +673,7 @@
                 content.children.item(i).classList.remove("active");
                 i--;
 
-                var ml_ = widths * i;
+                let ml_ = widths * i;
                 content.style.marginLeft = "-" + ml_ + "px";
 
             } else {
@@ -673,15 +683,15 @@
                 if (step > 1) {
                     last_i = last_i - step + 1;
                 }
-                var ml_ = widths * (last_i - 1);
+                let ml_ = widths * (last_i - 1);
                 content.style.marginLeft = "-" + ml_ + "px";
                 i--;
             }
 
         };
         slider_direction = function (el) {
-            var prev = el.querySelector(".carousel-prev-btn");
-            var next = el.querySelector(".carousel-next-btn");
+            let prev = el.querySelector(".carousel-prev-btn");
+            let next = el.querySelector(".carousel-next-btn");
             if (el.contains(prev) && el.contains(next)) {
                 prev.addEventListener("click", function () {
                     window.clearInterval(this.autoplayEffect);
@@ -696,13 +706,13 @@
             if (el.contains(pagination_content)) {
                 pagination();
 
-                var paginate = pagination_content.querySelectorAll(".item");
+                let paginate = pagination_content.querySelectorAll(".item");
                 Array.prototype.forEach.call(paginate, function (el) {
                     el.addEventListener("click", function () {
                         window.clearInterval(this.autoplayEffect);
-                        var last_i = el.parentNode.lastChild.tabIndex,
+                        let last_i = el.parentNode.lastChild.tabIndex,
                             i = el.tabIndex;
-                        var ml_ = widths * i;
+                        let ml_ = widths * i;
                         content.style.marginLeft = "-" + ml_ + "px";
                     }, false);
                 });
@@ -722,14 +732,14 @@
         return this;
     };
 
-    var carousel_ = document.querySelectorAll(".carousel-slider");
+    let carousel_ = document.querySelectorAll(".carousel-slider");
     for (el of carousel_) {
         let id = el.getAttribute("id");
         carousel(el);
     }
-    var alert = document.querySelectorAll(".alert-toggle");
+    let alert = document.querySelectorAll(".alert-toggle");
     Array.prototype.forEach.call(alert, function (el) {
-        var id = el.getAttribute("data-href"),
+        let id = el.getAttribute("data-href"),
             content = document.querySelector(".alert[data-id=" + id + "]"),
             close = document.querySelector(".alert-close[data-href=" + id + "]"),
             position = el.getAttribute("alert-position");
@@ -767,7 +777,7 @@
             alertX(posX)
         }, false);
     });
-    var alert_close = document.querySelectorAll(".alert-close");
+    let alert_close = document.querySelectorAll(".alert-close");
 
     Array.prototype.forEach.call(alert_close, function (el) {
         el.addEventListener("click", function () {
@@ -787,12 +797,12 @@
             }, 40);
         }, false);
     });
-    var chip = document.querySelectorAll("[data-type=chip]");
+    let chip = document.querySelectorAll("[data-type=chip]");
     Array.prototype.forEach.call(chip, function (el) {
         el.addEventListener("keypress", function (e) {
             if (e.keyCode == 13) {
-                var val = el.value;
-                var chips = document.createElement("div"),
+                let val = el.value;
+                let chips = document.createElement("div"),
                     span = document.createElement("span"),
                     close = document.createElement("button");
                 chips.classList.add("chip");
@@ -808,16 +818,16 @@
             }
         }, false);
     });
-    var progress = document.querySelectorAll(".progress-bar");
+    let progress = document.querySelectorAll(".progress-bar");
     Array.prototype.forEach.call(progress, function (el) {
         el.style.transition = "all 0.4s ease-in-out";
-        var wd = el.getAttribute("aria-valuenow"),
+        let wd = el.getAttribute("aria-valuenow"),
             text = el.getAttribute("aria-valuetext");
         el.style.width = wd;
         el.innerHTML = text;
     });
-    var datepicker = (function () {
-        var date = new Date(),
+    let datepicker = (function () {
+        let date = new Date(),
             year = date.getFullYear(),
             month = date.getMonth(),
             day = date.getDate(),
@@ -833,8 +843,8 @@
             };
 
         function getArrayMonths() {
-            for (var i = 0; i < month_count; i++) {
-                var objDate = new Date(year, i, 10),
+            for (let i = 0; i < month_count; i++) {
+                let objDate = new Date(year, i, 10),
                     locale = navigator.language,
                     month_l = objDate.toLocaleString(locale, {
                         month: "long"
@@ -851,8 +861,8 @@
         function getArrayday() {
             days = [];
             week_day = [];
-            for (var i = 0; i <= day_count; i++) {
-                var objDate = new Date(year, month, i),
+            for (let i = 0; i <= day_count; i++) {
+                let objDate = new Date(year, month, i),
                     locale = navigator.language,
                     day_l = objDate.toLocaleString(locale, {
                         day: "numeric"
@@ -866,8 +876,8 @@
         }
 
         function week_day_name() {
-            for (var i = 0; i < week_day_count; i++) {
-                var objDate = new Date(year, month, i),
+            for (let i = 0; i < week_day_count; i++) {
+                let objDate = new Date(year, month, i),
                     locale = navigator.language,
                     weekDay = objDate.toLocaleString(locale, {
                         weekday: "short"
@@ -876,7 +886,7 @@
             }
         }
 
-        var setup = function (par = null) {
+        let setup = function (par = null) {
             if (par == null) {
                 par = document;
                 return par;
@@ -884,11 +894,11 @@
             day_count = lastday(year, month);
             getArrayMonths();
             getArrayday();
-            var day_c_parent_head = par.querySelector(".datepicker-body-head");
-            var day_c_parent_day = par.querySelector(".datepicker-body-content");
+            let day_c_parent_head = par.querySelector(".datepicker-body-head");
+            let day_c_parent_day = par.querySelector(".datepicker-body-content");
             for (i in week_day) {
                 if (i - 1 < 6) {
-                    var day_c = document.createElement("h6");
+                    let day_c = document.createElement("h6");
                     day_c.classList.add("datepicker-days");
                     day_c.innerHTML = week_day[i];
                     day_c_parent_head.appendChild(day_c);
@@ -897,7 +907,7 @@
                 }
             }
             for (i in days) {
-                var day_c = document.createElement("div");
+                let day_c = document.createElement("div");
                 day_c.classList.add("datepicker-days");
                 day_c.href = "#!";
                 day_c.innerHTML = days[i];
@@ -907,7 +917,7 @@
                 if (i == day) {
                     day_c.classList.add("active");
                 }
-                var x = 1;
+                let x = 1;
                 if (i < days[x]) {
                     day_c.classList.add("date-gray");
                 }
@@ -927,14 +937,14 @@
                 x++;
             }
             if (days.length < 35) {
-                for (var a = 1; a <= 35 - days.length; a++) {
-                    var day_c = document.createElement("span");
+                for (let a = 1; a <= 35 - days.length; a++) {
+                    let day_c = document.createElement("span");
                     day_c.classList.add("datepicker-days", "date-gray");
                     day_c.innerHTML = a;
                     day_c_parent_day.appendChild(day_c);
                 }
             }
-            var head_summary = par.querySelector("a.date-summary");
+            let head_summary = par.querySelector("a.date-summary");
             head_summary.innerHTML = day + " " + months_long[month] + " " + year;
             return this;
         };
@@ -946,7 +956,7 @@
             if (par == null) {
                 par = document.querySelector(".datepicker")
             }
-            var day = par.querySelectorAll(".datepicker-days");
+            let day = par.querySelectorAll(".datepicker-days");
             for (i in day) {
                 day[i].outerHTML = "";
             }
@@ -956,14 +966,14 @@
             return (params.value = day + "-" + month + "-" + year);
         }
 
-        var datepicker = [document.getElementsByClassName("datepicker-toggle"), document.querySelectorAll("[data-toggle=datepicker]"), document.querySelectorAll("[data-select=datepicker]")];
+        let datepicker = [document.getElementsByClassName("datepicker-toggle"), document.querySelectorAll("[data-toggle=datepicker]"), document.querySelectorAll("[data-select=datepicker]")];
         Array.prototype.forEach.call(datepicker, function (picker) {
             Array.prototype.forEach.call(picker, function (el) {
-                var that = el;
-                var datepicker_create = document.createElement("div");
+                let that = el;
+                let datepicker_create = document.createElement("div");
                 datepicker_create.classList.add("datepicker");
                 datepicker_create.setAttribute("data-input-name", that.getAttribute("data-name"));
-                var input_cr = document.createElement("input");
+                let input_cr = document.createElement("input");
                 input_cr.type = "hidden";
                 input_cr.name = that.getAttribute("data-name");
 
@@ -981,7 +991,7 @@
                     '<span class="tip"></span><div class="datepicker-head"><a href="#!" class="prev-date">&#8651;</a><a class="date-summary"></a><a href="#!" class="next-date">&#8652;</a></div><div class="datepicker-body"><div class="datepicker-body-head"></div><div class="datepicker-body-content"></div></div>';
                 el = datepicker_create;
                 setup(el);
-                var prev_date = el.querySelectorAll(".prev-date");
+                let prev_date = el.querySelectorAll(".prev-date");
                 Array.prototype.forEach.call(
                     prev_date,
                     function (prev) {
@@ -1001,7 +1011,7 @@
                     }
                 );
 
-                var next_date = el.querySelectorAll(".next-date");
+                let next_date = el.querySelectorAll(".next-date");
                 Array.prototype.forEach.call(next_date, function (next) {
                     next.addEventListener(
                         "click",
@@ -1017,17 +1027,17 @@
                             setup(el);
                         }, false);
                 });
-                var menu = el.querySelectorAll("a.date-summary");
+                let menu = el.querySelectorAll("a.date-summary");
                 Array.prototype.forEach.call(menu, function (summary) {
                     summary.addEventListener("click",
                         function () {
-                            var c_menu = document.createElement("div");
+                            let c_menu = document.createElement("div");
                             c_menu.classList.add("datepicker-menu");
-                            var dpicker = el;
+                            let dpicker = el;
                             dpicker.appendChild(c_menu);
                             c_menu.classList.add("active");
                             for (let i = year - 6; i <= year + 5; i++) {
-                                var item = document.createElement("aside");
+                                let item = document.createElement("aside");
                                 item.classList.add("datepicker-years");
                                 item.tabIndex = i;
                                 item.innerHTML = i;
@@ -1037,7 +1047,7 @@
                                 c_menu.appendChild(item);
                             }
 
-                            var d_years = el.querySelectorAll(".datepicker-years");
+                            let d_years = el.querySelectorAll(".datepicker-years");
                             Array.prototype.forEach.call(d_years, function (el_year) {
                                 el_year.addEventListener("click", function () {
                                     year = this.tabIndex;
@@ -1046,7 +1056,7 @@
 
                                     for (i in months_long) {
                                         if (i < 12) {
-                                            var item = document.createElement("aside");
+                                            let item = document.createElement("aside");
                                             item.classList.add("datepicker-months");
                                             item.tabIndex = i;
                                             item.innerHTML = months_long[i];
@@ -1057,7 +1067,7 @@
                                         }
 
                                     }
-                                    var d_months = el.querySelectorAll(".datepicker-months");
+                                    let d_months = el.querySelectorAll(".datepicker-months");
                                     Array.prototype.forEach.call(d_months, function (i) {
                                         i.addEventListener("click", function (el_month) {
                                             c_menu.classList.remove("active");
@@ -1077,7 +1087,7 @@
         });
 
     })();
-    var fileput = document.getElementsByClassName("fileput");
+    let fileput = document.getElementsByClassName("fileput");
     Array.prototype.forEach.call(fileput, function (el) {
         let text = el.getElementsByClassName("fileput-text")[0],
             btn = el.getElementsByClassName("fileput-btn")[0],
@@ -1099,7 +1109,7 @@
                 arr.push(i);
             }
             for (let i of arr) {
-                var li = document.createElement("li");
+                let li = document.createElement("li");
                 li.className = "item";
                 li.innerHTML = i.name;
                 list.querySelector("ul").append(li);
@@ -1111,8 +1121,8 @@
     ;
     (function (window) {
         'use strict';
-        var Waves = Waves || {};
-        var $$ = document.querySelectorAll.bind(document);
+        let Waves = Waves || {};
+        let $$ = document.querySelectorAll.bind(document);
         // Find exact position of element
         function isWindow(obj) {
             return obj !== null && obj === obj.window;
@@ -1123,7 +1133,7 @@
         }
 
         function offset(elem) {
-            var docElem, win, box = {
+            let docElem, win, box = {
                     top: 0,
                     left: 0
                 },
@@ -1140,15 +1150,15 @@
         }
 
         function convertStyle(obj) {
-            var style = '';
-            for (var a in obj) {
+            let style = '';
+            for (let a in obj) {
                 if (obj.hasOwnProperty(a)) {
                     style += (a + ':' + obj[a] + ';');
                 }
             }
             return style;
         }
-        var Effect = {
+        let Effect = {
             // Effect delay
             duration: 750,
             show: function (e, element) {
@@ -1156,16 +1166,16 @@
                 if (e.button === 2) {
                     return false;
                 }
-                var el = element || this;
+                let el = element || this;
                 // Create ripple
-                var ripple = document.createElement('div');
+                let ripple = document.createElement('div');
                 ripple.className = 'waves-ripple';
                 el.appendChild(ripple);
                 // Get click coordinate and element witdh
-                var pos = offset(el);
-                var relativeY = (e.pageY - pos.top);
-                var relativeX = (e.pageX - pos.left);
-                var scale = 'scale(' + ((el.clientWidth / 100) * 10) + ')';
+                let pos = offset(el);
+                let relativeY = (e.pageY - pos.top);
+                let relativeX = (e.pageX - pos.left);
+                let scale = 'scale(' + ((el.clientWidth / 100) * 10) + ')';
                 // Support for touch devices
                 if ('touches' in e) {
                     relativeY = (e.touches[0].pageY - pos.top);
@@ -1177,7 +1187,7 @@
                 ripple.setAttribute('data-x', relativeX);
                 ripple.setAttribute('data-y', relativeY);
                 // Set ripple position
-                var rippleStyle = {
+                let rippleStyle = {
                     'top': relativeY + 'px',
                     'left': relativeX + 'px'
                 };
@@ -1203,28 +1213,28 @@
             },
             hide: function (e) {
                 TouchHandler.touchup(e);
-                var el = this;
-                var width = el.clientWidth * 1.4;
+                let el = this;
+                let width = el.clientWidth * 1.4;
                 // Get first ripple
-                var ripple = null;
-                var ripples = el.getElementsByClassName('waves-ripple');
+                let ripple = null;
+                let ripples = el.getElementsByClassName('waves-ripple');
                 if (ripples.length > 0) {
                     ripple = ripples[ripples.length - 1];
                 } else {
                     return false;
                 }
-                var relativeX = ripple.getAttribute('data-x');
-                var relativeY = ripple.getAttribute('data-y');
-                var scale = ripple.getAttribute('data-scale');
+                let relativeX = ripple.getAttribute('data-x');
+                let relativeY = ripple.getAttribute('data-y');
+                let scale = ripple.getAttribute('data-scale');
                 // Get delay beetween mousedown and mouse leave
-                var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
-                var delay = 350 - diff;
+                let diff = Date.now() - Number(ripple.getAttribute('data-hold'));
+                let delay = 350 - diff;
                 if (delay < 0) {
                     delay = 0;
                 }
                 // Fade out ripple after delay
                 setTimeout(function () {
-                    var style = {
+                    let style = {
                         'top': relativeY + 'px',
                         'left': relativeX + 'px',
                         'opacity': '0', // Duration
@@ -1249,18 +1259,18 @@
                 }, delay);
             }, // Little hack to make <input> can perform waves effect
             wrapInput: function (elements) {
-                for (var a = 0; a < elements.length; a++) {
-                    var el = elements[a];
+                for (let a = 0; a < elements.length; a++) {
+                    let el = elements[a];
                     if (el.tagName.toLowerCase() === 'input') {
-                        var parent = el.parentNode;
+                        let parent = el.parentNode;
                         // If input already have parent just pass through
                         if (parent.tagName.toLowerCase() === 'i' && parent.className.indexOf('waves-effect') !== -1) {
                             continue;
                         }
                         // Put element class and style to the specified parent
-                        var wrapper = document.createElement('i');
+                        let wrapper = document.createElement('i');
                         wrapper.className = el.className + ' waves-input-wrapper';
-                        var elementStyle = el.getAttribute('style');
+                        let elementStyle = el.getAttribute('style');
                         if (!elementStyle) {
                             elementStyle = '';
                         }
@@ -1277,14 +1287,14 @@
         /**
          * Disable mousedown event for 500ms during and after touch
          */
-        var TouchHandler = {
+        let TouchHandler = {
             /* uses an integer rather than bool so there's no issues with
              * needing to clear timeouts if another touch event occurred
              * within the 500ms. Cannot mouseup between touchstart and
              * touchend, nor in the 500ms after touchend. */
             touches: 0,
             allowEvent: function (e) {
-                var allow = true;
+                let allow = true;
                 if (e.type === 'touchstart') {
                     TouchHandler.touches += 1; //push
                 } else if (e.type === 'touchend' || e.type === 'touchcancel') {
@@ -1310,8 +1320,8 @@
             if (TouchHandler.allowEvent(e) === false) {
                 return null;
             }
-            var element = null;
-            var target = e.target || e.srcElement;
+            let element = null;
+            let target = e.target || e.srcElement;
             while (target.parentElement !== null) {
                 if (!(target instanceof SVGElement) && target.className.indexOf('waves-effect') !== -1) {
                     element = target;
@@ -1328,7 +1338,7 @@
          * Bubble the click and show effect if .waves-effect elem was found
          */
         function showEffect(e) {
-            var element = getWavesEffectElement(e);
+            let element = getWavesEffectElement(e);
             if (element !== null) {
                 Effect.show(e, element);
                 if ('ontouchstart' in window) {

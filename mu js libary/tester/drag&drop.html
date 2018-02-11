@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>drag and drop</title>
+    <link rel="stylesheet" href="../css/comeback.css">
+</head>
+<body>
+<div class="wrap xl-flexbox xl-gutter-40 xl-outside-40 xl-between">
+    <div class="col xl-1-2 md-1-1">
+        <button class="btn btn-default">button default</button>
+        <button class="btn btn-info">button info</button>
+        <button class="btn btn-purple">button purple</button>
+        <button class="btn btn-rose">button rose</button>
+        <button class="btn btn-sublime">button sublime</button>
+        <button class="btn btn-success">button success</button>
+        <button class="btn btn-dark">button dark</button>
+        <button class="btn btn-warning">button warning</button>
+        <button class="btn btn-white">button white</button>
+        <div class="bg-default p-50">
+            <h4>Buraya sürükle</h4>
+        </div>
+    </div>
+    <div class="col xl-1-2 md-1-1">
+        <ul class="list box">
+            <li class="item">item 1</li>
+            <li class="item">item 2</li>
+            <li class="item">item 3</li>
+            <li class="item">item 4</li>
+            <li class="item">item 5</li>
+            <li class="item">item 6</li>
+        </ul>
+    </div>
+</div>
+
+<a class="btn btn-xs">Button</a>
+<button class="btn btn-sm">Button</button>
+<button class="btn btn-md">Button</button>
+<button class="btn btn-lg">Button</button>
+<button class="btn btn-xl">Button</button>
+<button class="btn btn-xxl">Button</button>
+<div class="bg-default w-200 h-200"></div>
+<script src="../js/dragabble/drag.js"></script>
+
+<script>
+    draggable(".btn",{dropItem:".bg-default",dropType:"append"});
+    draggable("li", {
+        dropItem: "ul",
+        dropType: "after",
+        dropOver: (event, ui) => {
+            console.log("dropOver");
+        },
+        drop: (event, ui) => {
+            console.log("drop",event,ui);
+        },
+        drag: (event, ui) => {
+            console.log("drag");
+        },
+        dragStart: (event, ui) => {
+            console.log("dragStart");
+        },
+        dragLeave: (event, ui) => {
+            console.log("dragLeave");
+        },
+        dragEnter: (event, ui) => {
+            console.log("dragEnter");
+        },
+        dragEnd: (event, ui) => {
+            console.log("dragEnd");
+        },
+        css: {
+            opacity: "0.7",
+            cssText: "color:blue;box-shadow:0 0 10px 0 gray;",
+            delay: 1000,
+            zIndex: 1000
+        }
+    });
+    // var dragged;
+    //
+    // /* events fired on the draggable target */
+    // document.addEventListener("drag", function( event ) {
+    //
+    // }, false);
+    //
+    // document.addEventListener("dragstart", function( event ) {
+    //     // store a ref. on the dragged elem
+    //     dragged = event.target;
+    //     // make it half transparent
+    //     event.target.style.opacity = .5;
+    // }, false);
+    //
+    // document.addEventListener("dragend", function( event ) {
+    //     // reset the transparency
+    //     event.target.style.opacity = "";
+    // }, false);
+    //
+    // /* events fired on the drop targets */
+    // document.addEventListener("dragover", function( event ) {
+    //     // prevent default to allow drop
+    //     event.preventDefault();
+    //     event.dataTransfer.setData("text/plain", "Text to drag");
+    // }, false);
+    //
+    // document.addEventListener("dragenter", function( event ) {
+    //     // highlight potential drop target when the draggable element enters it
+    //     if ( event.target.className == "dropzone" ) {
+    //         event.target.style.background = "purple";
+    //     }
+    //
+    // }, false);
+    //
+    // document.addEventListener("dragleave", function( event ) {
+    //     // reset background of potential drop target when the draggable element leaves it
+    //     if ( event.target.className == "dropzone" ) {
+    //         event.target.style.background = "";
+    //     }
+    //
+    // }, false);
+    //
+    // document.addEventListener("drop", function( event ) {
+    //     // prevent default action (open as link for some elements)
+    //     event.preventDefault();
+    //     // move dragged elem to the selected drop target
+    //     if ( event.target.className == "dropzone" ) {
+    //         event.target.style.background = "";
+    //         dragged.parentNode.removeChild( dragged );
+    //         event.target.appendChild( dragged );
+    //     }
+    //
+    // }, false);
+</script>
+
+</body>
+</html>

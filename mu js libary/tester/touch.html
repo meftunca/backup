@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>touch api</title>
+    <link rel="stylesheet" href="../css/carousel.css">
+    <style>
+        .slide-item {
+            height: 200px;
+            text-align: center;
+            border-right: 1px solid #e1e1e1;
+        }
+    </style>
+</head>
+<body class="container">
+
+<div class="carousel-slider" id="basic">
+    <div class="carousel-content bg-white">
+        <aside class="slide-item">slide 1</aside>
+        <aside class="slide-item">slide 2</aside>
+        <aside class="slide-item">slide 3</aside>
+        <aside class="slide-item">slide 4</aside>
+        <aside class="slide-item">slide 5</aside>
+    </div>
+    <button class="carousel-prev-btn">&larr;</button>
+    <button class="carousel-next-btn">&rarr;</button>
+
+</div>
+<!--# Yalnızca paginate-->
+
+<!--<div class="carousel-slider" id="paginate">-->
+    <!--<div class="carousel-content" data-pagination="true">-->
+        <!--<aside class="slide-item">slide 1</aside>-->
+        <!--<aside class="slide-item">slide 2</aside>-->
+        <!--<aside class="slide-item">slide 3</aside>-->
+        <!--<aside class="slide-item">slide 4</aside>-->
+        <!--<aside class="slide-item">slide 5</aside>-->
+    <!--</div>-->
+    <!--<div class="carousel-pagination"></div>-->
+<!--</div>-->
+
+<!--# Yön butonları ve paginate-->
+
+<!--<div class="carousel-slider" id="paginatebtn">-->
+    <!--<div class="carousel-content">-->
+        <!--<aside class="slide-item">slide 1</aside>-->
+        <!--<aside class="slide-item">slide 2</aside>-->
+        <!--<aside class="slide-item">slide 3</aside>-->
+        <!--<aside class="slide-item">slide 4</aside>-->
+        <!--<aside class="slide-item">slide 5</aside>-->
+    <!--</div>-->
+    <!--<button class="carousel-prev-btn">&larr;</button>-->
+    <!--<button class="carousel-next-btn">&rarr;</button>-->
+    <!--<div class="carousel-pagination"></div>-->
+<!--</div>-->
+<script src="../js/carousel.js"></script>
+<script src="../js/touch/touch.js"></script>
+<script>
+    touch (".carousel-content", {
+        start: (e, helper) => {
+            clicked = true;
+            helper.trigger.style.transitionDuration = "0ms";
+        }, move: (e, helper) => {
+            let parents =helper.trigger,
+                width = Number (e.target.style.width.replace ("px", "")),
+                indis = parents.querySelector (".slide-item.active").tabIndex,
+                next = -( helper.finish.x - helper.start.x) + ( width * indis );
+            parents.style.cursor = "pointer";
+            parents.style.transform = "translate3d(-" + ( next ) + "px,0px,0px)";
+            next = width * indis;
+        }, end: (e, helper) => {
+            let direction = helper.direction.x,
+                parents = helper.trigger,
+                len = parents.querySelectorAll (".slide-item").length,
+                width = Number (e.target.style.width.replace ("px", "")),
+                indis = parents.querySelector (".slide-item.active").tabIndex + 1,
+                next = () => {
+                    let action = -1 * width * indis,
+                        query = parents.lastElementChild.classList.contains ("active"),
+                        query2 = helper.finish.x < width / 2,
+                        query3 = Math.abs (helper.change.x) > width / 2;
+                    if (query) {
+                        action = 0;
+                        parents.lastElementChild.classList.remove ("active");
+                        parents.firstElementChild.classList.add ("active");
+                        parents.style.transitionDuration = "1000ms";
+                        parents.style.transform = "translate3d(" + ( action ) + "px,0px,0px)";
+                    } else {
+                        if (query2 || query3) {
+                            let active = parents.querySelector (".slide-item.active");
+                            parents.style.transform = "translate3d(" + ( action ) + "px,0px,0px)";
+                            active.classList.remove ("active");
+                            active.nextElementSibling.classList.add ("active");
+                        } else {
+                            parents.style.transform = "translate3d(" + ( action + width ) + "px,0px,0px)";
+                        }
+                    }
+                },
+                prev = () => {
+                    let action = -width * ( indis - 1 ),
+                        query = parents.firstElementChild.classList.contains ("active"),
+                        query2 = helper.change.x > width / 2,
+                        query3 = Math.abs (helper.change.x) < width / 2;
+                    if (helper.change.x !== null || Math.abs (helper.change.x) > 50) {
+                        if (query) {
+                            action = -width * ( len - 1 );
+                            parents.firstElementChild.classList.remove ("active");
+                            parents.lastElementChild.classList.add ("active");
+                            parents.style.transitionDuration = "1000ms";
+                            parents.style.transform = "translate3d(" + ( action ) + "px,0px,0px)";
+                        } else {
+                            if (query2 || query3 && Math.abs (helper.change.x) > 75) {
+                                let active = parents.querySelector (".slide-item.active");
+                                action = -width * ( indis - 1 );
+                                active.classList.remove ("active");
+                                active.previousElementSibling.classList.add ("active");
+                                parents.style.transform = "translate3d(" + ( action + width ) + "px,0px,0px)";
+                            }
+                        }
+                    }
+                };
+            parents.style.transitionDuration = "300ms";
+            if (direction === "left") {
+                next ();
+            } else if (direction === "right") {
+                prev ();
+            }
+        }
+    });
+</script>
+</body>
+</html>

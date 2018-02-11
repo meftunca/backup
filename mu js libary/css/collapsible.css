@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5;
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-family: "Montserrat", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    color: #676767;
+    height: 100%;
+    touch-action: manipulation;
+
+}
+
+body {
+    margin: 0;
+    background: #fbfbfb !important;
+    height: 100%;
+    text-align: left;
+    padding: 10%;
+}
+
+.collapse-content {
+    display: none;
+}
+
+.collapse-content.show {
+    display: block;
+}
+
+/**
+ * collapsible
+ */
+.collapse-group {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    padding: 0;
+}
+.collapse-group.popout{
+    align-items: center;
+}
+.collapse-group.popout > .collapse-item {
+    margin: 0 24px;
+    width: calc(100% - 24px);
+    transition:all 0.4s ease-in-out;
+ }
+.collapse-group.popout > .collapse-item.active {
+    margin: 20px 0;
+    width: 100%;
+    box-shadow: 0 0 5px 0 rgba(3, 3, 3, .2)
+}
+.collapse-group > .collapse-item {
+    background: #fff;
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    margin: 2px;
+    box-shadow: 0 0 2px 0 rgba(3, 3, 3, .1)
+}
+
+.collapse-group > .collapse-item > .collapse-toggle {
+    padding: 14px;
+    width: 100%;
+    transition: all 0.2ms linear !important;
+
+}
+
+.collapse-group > .collapse-item > .collapse-toggle:hover {
+    background: #fdfdfd;
+}
+
+.collapse-group > .collapse-item > .collapse-content {
+    padding: 15px;
+    width: 100%;
+}
+.collapse-group > .collapse-item > .collapse-content-light{
+    background-color: #fdfdfd;
+}

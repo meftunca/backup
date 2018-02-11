@@ -1,0 +1,109 @@
+body.overlay::before {
+  content: ' ';
+  background-color: rgba(0, 0, 0, 0.76);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1; }
+
+.datepicker {
+  position: relative;
+  background-color: white;
+  z-index: 999;
+  display: none;
+  width: auto;
+  margin: auto 0; }
+  .datepicker * {
+    /* box-sizing */
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box; }
+  .datepicker a {
+    text-decoration: none;
+    color: #000; }
+  .datepicker.active {
+    left: 0;
+    display: flex;
+    flex-flow: column wrap; }
+  .datepicker .datepicker-body .row-week {
+    border-bottom: 1px solid #eee; }
+  .datepicker .datepicker-body .datepicker-days {
+    padding: 20px 0;
+    color: #34495E;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    width: calc(100% / 7);
+    font-size: 14px;
+    margin: 0; }
+  .datepicker .datepicker-body .datepicker-body-content .datepicker-days:hover {
+    background: #e9e9e9;
+    cursor: pointer; }
+  .datepicker .divider {
+    border-bottom: 1px solid #eee !important;
+    padding: 0 !important;
+    margin: 0 !important; }
+  .datepicker .datepicker-body .datepicker-body-head {
+    border-bottom: 1px solid #eee !important;
+    margin: 0 !important;
+    background-color: #00AEFF; }
+    .datepicker .datepicker-body .datepicker-body-head .datepicker-days {
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff; }
+  .datepicker .datepicker-body .datepicker-body-content .datepicker-days {
+    font-size: 13px;
+    font-weight: 400; }
+    .datepicker .datepicker-body .datepicker-body-content .datepicker-days.active {
+      color: #17f123;
+      font-weight: 500 !important;
+      font-size: 15px !important; }
+    .datepicker .datepicker-body .datepicker-body-content .datepicker-days.date-gray {
+      color: #b7b6b6;
+      background: none;
+      font-size: 11px; }
+  .datepicker .datepicker-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #009EE8;
+    height: 50px; }
+    .datepicker .datepicker-head .next-date, .datepicker .datepicker-head .prev-date {
+      font-size: 22px;
+      line-height: 0.7; }
+    .datepicker .datepicker-head .date-summary, .datepicker .datepicker-head .next-date, .datepicker .datepicker-head .prev-date {
+      cursor: pointer;
+      padding: 5px 10px;
+      transition: all 0.3s ease-in-out;
+      color: #fff; }
+  .datepicker .datepicker-menu {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+    background-color: #f9f9f9;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    bottom: -50px; }
+    .datepicker .datepicker-menu.active {
+      opacity: 1;
+      visibility: visible; }
+    .datepicker .datepicker-menu .datepicker-years, .datepicker .datepicker-menu .datepicker-months {
+      padding: 20px 0;
+      width: 33.3%;
+      color: #888;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer; }
+    .datepicker .datepicker-menu .datepicker-years:hover, .datepicker .datepicker-menu .datepicker-years.active {
+      background: #009EE8;
+      color: #fefefe; }
+    .datepicker .datepicker-menu .datepicker-months:hover, .datepicker .datepicker-menu .datepicker-months.active {
+      background: #eee; }
+
+/*# sourceMappingURL=datepicker.css.map */
